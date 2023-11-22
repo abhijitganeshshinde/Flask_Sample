@@ -5,6 +5,13 @@ pipeline {
         python 'Python3' 
     }
     stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the source code from Git
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/yourusername/your-repo.git']]])
+            }
+        }
+        
         stage('Build') {
             steps {
                 sh 'python --version'
