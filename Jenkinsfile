@@ -1,6 +1,10 @@
 pipeline {
     agent any
-    
+
+    tools {
+        // Replace '/usr/bin/python3' with the correct path to the Python executable
+        tool 'Python3' // Replace 'Python3' with the name from Jenkins Global Tool Configuration
+    }
 
     stages {
         stage('Checkout') {
@@ -12,9 +16,9 @@ pipeline {
         
         stage('Build') {
             steps {
-                sh 'python --version'
-                sh 'pip --version'
-                sh 'pip install -r requirements.txt'
+                sh '/usr/bin/python3 --version' // Use the correct path to Python executable
+                sh '/usr/bin/python3 -m pip --version' // Use the correct path to Python executable
+                sh '/usr/bin/python3 -m pip install -r requirements.txt' // Use the correct path to Python executable
             }
         }
         
