@@ -1,9 +1,10 @@
 pipeline {
     agent any
+    
     tools {
-        
-        python 'Python3' 
+        python 'Python3'
     }
+
     stages {
         stage('Checkout') {
             steps {
@@ -22,14 +23,12 @@ pipeline {
         
         stage('Test') {
             steps {
-                
                 sh 'pytest'
             }
         }
         
         stage('Deploy') {
             steps {
-                
                 sh 'echo Deploying to staging environment...'
             }
         }
@@ -37,7 +36,6 @@ pipeline {
     
     post {
         success {
-            
             emailext (
                 subject: "Pipeline Success",
                 body: "Your pipeline was successful.",
@@ -45,7 +43,6 @@ pipeline {
             )
         }
         failure {
-            
             emailext (
                 subject: "Pipeline Failure",
                 body: "Your pipeline has failed.",
