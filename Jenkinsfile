@@ -4,16 +4,15 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the source code from Git
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/abhijitganeshshinde/Flask_Sample.git']]])
             }
         }
         
         stage('Build') {
             steps {
-                sh '/usr/bin/python3 --version' // Use the correct path to Python executable
-                sh '/usr/bin/python3 -m pip --version' // Use the correct path to Python executable
-                sh '/usr/bin/python3 -m pip install -r requirements.txt' // Use the correct path to Python executable
+                sh '/usr/bin/python3 --version'
+                sh '/usr/bin/python3 -m pip --version'
+                sh '/usr/bin/python3 -m pip install -r requirements.txt'
             }
         }
         
@@ -27,6 +26,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'echo Deploying to staging environment...'
+                sh 'cp -r * /var/www/html'
+                sh 'sudo chown -R www-data:www-data /var/www/html'
+                sh 'sudo chmod -R 755 /var/www/html'
+                sh 'echo Deployment to /var/www/html complete.'
             }
         }
     }
