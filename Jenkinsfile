@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        // Replace '/usr/bin/python3' with the correct path to the Python executable
-        tool 'Python3' // Replace 'Python3' with the name from Jenkins Global Tool Configuration
-    }
-
     stages {
         stage('Checkout') {
             steps {
