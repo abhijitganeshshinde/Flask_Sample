@@ -1,18 +1,14 @@
-from flask import Flask
-import pytest
+from app import app
 
-@pytest.fixture
-def client():
-    app = Flask(__name__)
-    app.config['TESTING'] = True
-
+def test_hello_route():
     with app.test_client() as client:
-        yield client
+        response = client.get('/')
+        assert response.status_code == 200
+        assert response.data.decode('utf-8') == 'Hello'
 
-def test_hello(client):
-    response = client.get('/')
-    assert b'Hello' in response.data
-
-def test_aboutus(client):
-    response = client.get('/aboutus')
-    assert b'About Us' in response.data
+# Test the '/aboutus' route
+def test_aboutus_route():
+    with app.test_client() as client:
+        response = client.get('/aboutus')
+        assert response.status_code == 200
+        assert response.data.decode('utf-8') == 'About Us'
