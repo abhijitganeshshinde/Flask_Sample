@@ -20,7 +20,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh '/usr/bin/pytest --version'
-                sh '/usr/bin/pytest'
+                sh '/var/lib/jenkins/.local/bin/pytest'
             }
         }
         
