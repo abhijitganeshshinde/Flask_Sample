@@ -19,8 +19,8 @@ pipeline {
         
         stage('Test') {
             steps {
-                sh '/usr/lib/python3/dist-packages --version'
-                sh '/usr/lib/python3/dist-packages'
+                sh '/usr/bin/pytest-3 --version'
+                sh '/usr/bin/pytest-3'
             }
         }
         
