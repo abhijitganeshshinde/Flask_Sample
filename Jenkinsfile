@@ -19,7 +19,8 @@ pipeline {
         
         stage('Test') {
             steps {
-                sh 'pytest'
+                sh '/usr/bin/pytest --version'
+                sh '/usr/bin/pytest'
             }
         }
         
